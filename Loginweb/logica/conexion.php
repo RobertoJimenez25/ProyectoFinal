@@ -1,13 +1,8 @@
 <?php
-
-// $host_db = "localhost";
-// $user_db = "id20310581_aaronico";
-// $pass_db = "Hw\&J=21JXiLsZ~<";
-// $db_name = "id20310581_test_php";
-$host_db = "localhost:3308";
-$user_db = "root";
-$pass_db = "123456";
-$db_name = "test_php";
+$host_db="127.0.0.1:3306";
+$user_db="root";
+$pass_db="Hortencia25";
+$db_name="proyectofinalweb";
 
 
 $conexion = new mysqli($host_db,$user_db,$pass_db,$db_name);

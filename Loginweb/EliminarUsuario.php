@@ -5,13 +5,12 @@ $no_cuenta= $_SESSION['usermane'];//413112576
 
 if(!isset($no_cuenta)){
 
-        header("location: ./Proyecto/index.php");
+        header("location: ./index.php");
 }else{
     // Header 
     echo "
     
     <head>
-      <title>Principal</title>
       <!--Import Google Icon Font-->
       <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
       <!--Import materialize.css-->
@@ -34,73 +33,49 @@ if(!isset($no_cuenta)){
           
     </head>";
 
-    
 
     // se usa el requiere para si psi se necesita el archivo conexion
 require "./logica/conexion.php";
-mysqli_set_charset($conexion,'utf8');
 
-//genear el query
-$consulta_sql="SELECT * FROM persona";
+echo "<!DOCTYPE html>
+<html lang='en'>
 
-//mandar el query por medio de la conexion y almacenaremos el resultado en una variable
-$resultado = $conexion->query($consulta_sql);
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Eliminar Usuario</title>
+</head>
 
-// Retorna el numero de filas del resultado. Si encuentra mas de uno lo usamos para imprimir el resultado en nuestra tabla
-$count = mysqli_num_rows($resultado); 
- 
-echo "
 <body class= 'black'>
-<table class='striped centered black white-text' >
-<thead>
-    <tr>
-        <th>Usuario</th>
-        <th>No Cuenta Institucional</th>
-        <th>Direccion</th>
-        <th>Telefono</th>
-        <th>Correo Electronico</th>
-        <th>Contraseña</th>
-        <th>Fecha de Registro</th>
-        <th>Permisos</th>
-    </tr>
-/<thead>";
-
-if ( $count>0 ){
-    echo"<tbody class='black'>";
-    //aqui se pintarian los registro de la DB
-    while( $row = mysqli_fetch_assoc($resultado)  )
-
-    {
-        echo "<tr>";
-        echo"<td>". $row['nombre_usuario'] ."</td>";
-        echo"<td>". $row['no_cuenta'] ."</td>";
-        echo"<td>". $row['direccion'] ."</td>";
-        echo"<td>". $row['telefono'] ."</td>";
-        echo"<td>". $row['email'] ."</td>";
-        echo"<td>". $row['password'] ."</td>";
-        echo"<td>". $row['fecha_registro'] ."</td>";
-        echo"<td>". $row['permisos'] ."</td>";
-        echo "</tr>";
+    <div class='row'>
+        <div>
+            <div>   
+    <h3 class='center-align white-text' >Elimina Usuario</h3>
+    <form action='./logica/deleteUsuario.php' method='post'>
+    <label><h5>Ingresa el Número de cuenta del Usuario a eliminar</h5></label>
+    <hr>
+    <br>
+        <input class='white-text' type='text' name='no_cuenta' required maxlength='10'minlength='7' placeholder='Numero de Cuenta' />
+        <br />
+        <br>
+         <button class='btn waves-effect waves-light indigo darken-4' type='submit' name='action'>Eliminar usuario<i class='material-icons right'>delete_forever</i></button> 
         
-    }
-    echo"</tbody>";
-    echo "</table>";
-
-}else{
-    
-    echo " <h1 style='color:red' >Sin Ningun registro</h1>";
- } 
-  echo "
-    <br>
-    <br>
-    <div class = 'row'>
-    <a class='col s6 pull-s1 waves-effect waves-light btn-large deep-purple darken-4' href='EliminarUsuario.php'><i class='material-icons left'>delete_forever</i>Eliminar Usuario</a>
-    <a class='col s6 push-s1 waves-effect waves-light btn-large deep-purple darken-4' href='Registro.php'><i class='material-icons left'>group_add</i>Nuevo Registro</a>
+    </form>
+            </div>  
+        </div>
     </div>
-    <br>
+
+</body>
+
+</html>";
+    
+echo "
+    <div class = 'row'>
+    <a class='col  waves-effect waves-light btn-large deep-purple darken-4' href='Principal.php'><i class='material-icons left'>format_list_bulleted</i>Registros</a>
+    <a class='col s6 push-s1 waves-effect waves-light btn-large deep-purple darken-4' href='Registro.php'><i class='material-icons left'>group_add</i>Nuevo Registro boton </a>
+    </div>
     ";
 
-}
 
 // Footer
 echo "
@@ -135,6 +110,7 @@ echo "
     </div>
   </footer> 
   </body>
-  ";
-  
+  ";    
+
+}
 ?>

@@ -21,6 +21,8 @@ if ($array['contar'] > 0) {
     $_SESSION['usermane'] = $no_cuenta;
 
     header("location: ../Principal.php");
+    //header("location: ../inicio.php");
+    
 } else {
 
     header("location: ../indexError.php");
